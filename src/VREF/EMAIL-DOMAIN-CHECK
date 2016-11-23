@@ -16,8 +16,11 @@ use warnings;
 # this subroutine; change as you like
 sub email_ok {
     my ($author_email) = shift;
-    my $expected_email = "$ENV{GL_USER}\@atc.tcs.com";
-    return $author_email eq $expected_email;
+
+    my $expected_email_hostname_with_delim = '@' . pop @ARGV;
+    my $delim = '@';
+
+    return substr($author_email, index($author_email, $char)) eq $expected_email_hostname_with_delim;
 }
 
 my ( $ref, $old, $new ) = @ARGV;
